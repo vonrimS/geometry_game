@@ -35,16 +35,19 @@ class Rectangle:
             'Rectangle area: ' + str(self.area())
             )
 
+
 # create rectangle object
-r1 = Rectangle(Point(randint(0, 9), randint(0, 9)), Point(randint(10, 19), randint(10, 19)))
+r1 = Rectangle(Point(randint(0, 400), randint(0, 400)), Point(randint(10, 400), randint(10, 400)))
 
 print(r1)
 
 # get point and area from user
 user_input = Point(float(input('Guess X: ')), float(input('Guess Y: ')))
+user_area = float(input('Guess rectangle area: '))
 
-print(user_input.falls_in_rectangle(r1))
-
+# print the result
+print('Your point was inside rectangle: ', user_input.falls_in_rectangle(r1))
+print('Your area was off by: ', r1.area() - user_area)
 
 
 
