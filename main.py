@@ -1,5 +1,5 @@
 from random import randint
-
+import turtle
 
 class Point:
   def __init__(self, x, y):
@@ -35,19 +35,48 @@ class Rectangle:
             'Rectangle area: ' + str(self.area())
             )
 
+class GuiRectangle(Rectangle):
+  def draw(self, canvas):
+    # go to a certain coordinate
+    canvas.penup()
+    # side a, side b
+    a = self.point2.x - self.point1.x
+    b = self.point2.y - self.point1.y
+    # get new coordinate of point1
+    canvas.goto(self.point1.x, self.point1.y)
+    canvas.pendown()
+    canvas.forward(a)
+    canvas.left(90)
+    canvas.forward(b)
+    canvas.left(90)
+    canvas.forward(a)
+    canvas.left(90)
+    canvas.forward(b)
+    # finish drawing
+    turtle.done()
 
-# create rectangle object
-r1 = Rectangle(Point(randint(0, 400), randint(0, 400)), Point(randint(10, 400), randint(10, 400)))
+gui_rectangle = GuiRectangle(Point(randint(0, 90), randint(0, 90)),\
+                             Point(randint(100, 400), randint(100, 400)))
 
-print(r1)
+# canvas
+canvas = turtle.Turtle()
 
-# get point and area from user
-user_input = Point(float(input('Guess X: ')), float(input('Guess Y: ')))
-user_area = float(input('Guess rectangle area: '))
-
-# print the result
-print('Your point was inside rectangle: ', user_input.falls_in_rectangle(r1))
-print('Your area was off by: ', r1.area() - user_area)
+gui_rectangle.draw(canvas=canvas)
+print(gui_rectangle.area())
 
 
-
+# # create rectangle object
+# r1 = Rectangle(Point(randint(0, 400), randint(0, 400)), Point(randint(10, 400), randint(10, 400)))
+#
+# print(r1)
+#
+# # get point and area from user
+# user_input = Point(float(input('Guess X: ')), float(input('Guess Y: ')))
+# user_area = float(input('Guess rectangle area: '))
+#
+# # print the result
+# print('Your point was inside rectangle: ', user_input.falls_in_rectangle(r1))
+# print('Your area was off by: ', r1.area() - user_area)
+#
+#
+#
